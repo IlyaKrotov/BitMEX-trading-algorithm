@@ -9,6 +9,12 @@ This is a trading bot for use with BitMEX. It is free to use and modify for your
 Testnet trading is completely free and is identical to the live market.
 
 ---
+
+Articles about repository:
+
+1. Medium - https://medium.com/@ilia.krotov/bitmex-trading-new-open-source-algorithms-and-infrastructure-d864340c4f6e
+
+---
 ### Getting started
 
 ```python
