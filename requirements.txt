@@ -1,0 +1,11 @@
+ccxt==1.10.1113
+mlxtend==0.10.0
+catboost==0.6.3
+numpy==1.13.3
+TA_Lib==0.4.10
+pandas==0.21.0
+bitmex==0.2.2
+scikit_learn==0.19.1
+elasticsearch
+progressbar2
+influxdb

@@ -1,0 +1,4 @@
+bitmex-ws
+elasticsearch
+pandas
+numpy

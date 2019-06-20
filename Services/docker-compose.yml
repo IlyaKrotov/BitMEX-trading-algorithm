@@ -1,0 +1,33 @@
+version: "2.0"
+services:
+
+    influxdb:
+      image: influxdb:latest
+      container_name: influxdb
+      restart:
+        always
+      ports:
+        - "8083:8083"
+        - "8086:8086"
+        - "8090:8090"
+      env_file:
+        - 'env.influxdb'
+      volumes:
+        # Data persistency
+        # sudo mkdir -p /srv/docker/influxdb/data
+        - ./influxdb:/var/lib/influxdb
+      environment:
+        INFLUXDB_DB: db0
+        INFLUXDB_ADMIN_USER: prod
+        INFLUXDB_ADMIN_PASSWORD: m0rebtc
+
+    grafana:
+      image: grafana/grafana
+      restart:
+        always
+      ports:
+        - 3000:3000
+      volumes:
+        - ./grafana:/var/lib/grafana
+      environment:
+        GF_SERVER_ROOT_URL: http://138.68.112.36:3000

@@ -1,0 +1,53 @@
+version: "2.0"
+services:
+    elasticsearch:
+      build: elasticsearch/
+      volumes:
+        - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+        - ./elasticsearch/data:/usr/share/elasticsearch/data
+      logging:
+        driver: "json-file"
+        options:
+          max-size: "200k"
+          max-file: "10"
+      ports:
+        - "9200:9200"
+        - "9300:9300"
+      restart: always
+      environment:
+        ES_JAVA_OPTS: "-Xmx2048m -Xms2048m"
+
+#    influxdb:
+#      image: influxdb:latest
+#      container_name: influxdb
+#      ports:
+#        - "8083:8083"
+#        - "8086:8086"
+#        - "8090:8090"
+#      env_file:
+#        - 'env.influxdb'
+#      volumes:
+#        # Data persistency
+#        # sudo mkdir -p /srv/docker/influxdb/data
+#        - ./influxdb:/var/lib/influxdb
+
+    grafana:
+      image: grafana/grafana
+      ports:
+        - 3000:3000
+      volumes:
+        - ./grafana:/var/lib/grafana
+      environment:
+        GF_SERVER_ROOT_URL: http://91.235.136.166:3000
+
+    app:
+      build: .
+      logging:
+        driver: "json-file"
+        options:
+          max-size: "200k"
+          max-file: "10"
+      restart: always
+      volumes:
+        - ./logs:/usr/bitmextracker/logs
+       # - ./logs/collector.log:/usr/bitmextracker/logs/collector.log
